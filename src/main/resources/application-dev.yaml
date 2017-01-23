@@ -8,6 +8,24 @@ spring:
         driver-class-name: com.mysql.jdbc.Driver
     application:
         name: web-manager
+    boot:
+        admin:
+            url: http://localhost:9999
+            context-path: /monitorui
+endpoints:
+    health:
+        sensitive: false
+
+security:
+    
+    oauth2:
+        client:
+            client-id: acme
+            client-secret: acmesecret
+            scope: read,write
+            auto-approve-scopes: '.*'
+        authorization:
+            checkTokenAccess: isAuthenticated()
             
 jfish:
     security:
@@ -15,6 +33,7 @@ jfish:
         csrf:
             disable: true
         logoutUrl: /logout
+        alwaysUseDefaultTargetUrl: false
     siteConfig:
         uploadImageAccessPath: http://localhost/img/manager
         upload:
