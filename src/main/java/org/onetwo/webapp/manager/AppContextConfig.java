@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableUrlSecurity
-//@EnableAuthorizationServer
-//@EnableUserInfoResource
 public class AppContextConfig  {
 
 	@Bean
