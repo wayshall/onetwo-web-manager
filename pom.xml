@@ -25,6 +25,7 @@
         <!-- for test -->
         <unit-tests.skip>false</unit-tests.skip>
         <integration-tests.skip>true</integration-tests.skip>
+        <onetwo.version>4.3.9-SNAPSHOT</onetwo.version>
     </properties>
 
     <dependencies>
@@ -227,7 +228,7 @@
             <dependency>
                 <groupId>org.onetwo4j</groupId>
                 <artifactId>onetwo-bom</artifactId>
-                <version>4.3.8-SNAPSHOT</version>
+                <version>${onetwo.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -425,6 +426,13 @@
 
     
     <repositories>
+        <repository>
+             <id>oss</id>
+             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
         <repository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>
