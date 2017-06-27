@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.0.RELEASE</version>
+        <version>1.4.3.RELEASE</version>
     </parent>
 
     <properties>
@@ -25,7 +25,7 @@
         <!-- for test -->
         <unit-tests.skip>false</unit-tests.skip>
         <integration-tests.skip>true</integration-tests.skip>
-        <onetwo.version>4.3.9-SNAPSHOT</onetwo.version>
+        <onetwo.version>4.6.1-SNAPSHOT</onetwo.version>
     </properties>
 
     <dependencies>
@@ -44,25 +44,6 @@
 	       </exclusions>
         </dependency>
         
-       <!-- boot1.4rc 日志有冲突 -->
-	   <dependency>
-	       <groupId>ch.qos.logback</groupId>
-	       <artifactId>logback-core</artifactId>
-	       <version>1.1.6</version>
-	   </dependency>
-	
-	   <dependency>
-	       <groupId>ch.qos.logback</groupId>
-	       <artifactId>logback-classic</artifactId>
-	       <version>1.1.6</version>
-	      <exclusions>
-	      	<exclusion>
-	      		<groupId>ch.qos.logback</groupId>
-	      		<artifactId>logback-core</artifactId>
-	      	</exclusion>
-	      </exclusions>
-	   </dependency>
-	   
         <dependency>
           <groupId>org.onetwo4j</groupId>
           <artifactId>onetwo-security</artifactId>
@@ -79,6 +60,32 @@
         <dependency>
           <groupId>org.springframework.security.oauth</groupId>
           <artifactId>spring-security-oauth2</artifactId>
+          <exclusions>
+              <exclusion>
+                  <groupId>org.springframework</groupId>
+                  <artifactId>spring-core</artifactId>
+              </exclusion>
+              <exclusion>
+                  <groupId>org.springframework</groupId>
+                  <artifactId>spring-aop</artifactId>
+              </exclusion>
+              <exclusion>
+                  <groupId>org.springframework</groupId>
+                  <artifactId>spring-tx</artifactId>
+              </exclusion>
+              <exclusion>
+                  <groupId>org.springframework</groupId>
+                  <artifactId>spring-context</artifactId>
+              </exclusion>
+              <exclusion>
+                  <groupId>org.springframework</groupId>
+                  <artifactId>spring-beans</artifactId>
+              </exclusion>
+              <exclusion>
+                  <groupId>org.springframework</groupId>
+                  <artifactId>spring-jdbc</artifactId>
+              </exclusion>
+          </exclusions>
         </dependency>
         
          <dependency>
@@ -144,12 +151,32 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-	          <!-- <exclusions>
-	          	<exclusion>
-	          		<groupId>org.springframework.boot</groupId>
-	          		<artifactId>spring-boot-starter-logging</artifactId>
-	          	</exclusion>
-	          </exclusions> -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-aop</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-tx</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-jdbc</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     
         <dependency>
