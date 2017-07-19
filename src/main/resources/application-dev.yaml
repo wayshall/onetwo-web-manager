@@ -15,8 +15,8 @@ jfish:
         csrf:
             disable: true
         logoutUrl: /logout
-        redis: 
-            hostName: 127.0.0.1
+        # redis: 
+            # hostName: 127.0.0.1
     site:
         uploadImageAccessPath: http://localhost/img/manager
         upload:
