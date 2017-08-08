@@ -6,7 +6,7 @@
     <groupId>org.onetwo4j.example</groupId>
     <artifactId>onetwo-web-manager</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>onetwo-web-manager</name>
     <description>onetwo-web-manager</description>
@@ -20,7 +20,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <start-class>org.onetwo.webapp.manager.ApplicationStarter</start-class>
         
         <!-- for test -->
         <unit-tests.skip>false</unit-tests.skip>
@@ -329,26 +328,25 @@
 			        <failOnMissingWebXml>false</failOnMissingWebXml>
 			    </configuration>
 			</plugin>
+            
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                	<mainClass>${start-class}</mainClass>
-                </configuration>
-                <dependencies>
+                <version>1.5.4.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <!-- <dependencies>
                     <dependency>
                         <groupId>org.springframework</groupId>
                         <artifactId>springloaded</artifactId>
-                        <version>1.2.5.RELEASE</version>
+                        <version>1.2.4.RELEASE</version>
                     </dependency>
-                </dependencies>
-                <executions>
-                	<execution>
-                		<goals>
-                			<goal>repackage</goal>
-                		</goals>
-                	</execution>
-                </executions>
+                </dependencies> -->
             </plugin>
             
             <!-- db tools -->
