@@ -6,7 +6,7 @@
     <groupId>org.onetwo4j.example</groupId>
     <artifactId>onetwo-web-manager</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>onetwo-web-manager</name>
     <description>onetwo-web-manager</description>
@@ -14,17 +14,17 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.0.RELEASE</version>
+        <version>1.4.3.RELEASE</version>
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <start-class>org.onetwo.webapp.manager.ApplicationStarter</start-class>
         
         <!-- for test -->
         <unit-tests.skip>false</unit-tests.skip>
         <integration-tests.skip>true</integration-tests.skip>
+        <onetwo.version>4.6.1-SNAPSHOT</onetwo.version>
     </properties>
 
     <dependencies>
@@ -43,25 +43,6 @@
 	       </exclusions>
         </dependency>
         
-       <!-- boot1.4rc 日志有冲突 -->
-	   <dependency>
-	       <groupId>ch.qos.logback</groupId>
-	       <artifactId>logback-core</artifactId>
-	       <version>1.1.6</version>
-	   </dependency>
-	
-	   <dependency>
-	       <groupId>ch.qos.logback</groupId>
-	       <artifactId>logback-classic</artifactId>
-	       <version>1.1.6</version>
-	      <exclusions>
-	      	<exclusion>
-	      		<groupId>ch.qos.logback</groupId>
-	      		<artifactId>logback-core</artifactId>
-	      	</exclusion>
-	      </exclusions>
-	   </dependency>
-	   
         <dependency>
           <groupId>org.onetwo4j</groupId>
           <artifactId>onetwo-security</artifactId>
@@ -78,6 +59,32 @@
         <dependency>
           <groupId>org.springframework.security.oauth</groupId>
           <artifactId>spring-security-oauth2</artifactId>
+          <exclusions>
+              <exclusion>
+                  <groupId>org.springframework</groupId>
+                  <artifactId>spring-core</artifactId>
+              </exclusion>
+              <exclusion>
+                  <groupId>org.springframework</groupId>
+                  <artifactId>spring-aop</artifactId>
+              </exclusion>
+              <exclusion>
+                  <groupId>org.springframework</groupId>
+                  <artifactId>spring-tx</artifactId>
+              </exclusion>
+              <exclusion>
+                  <groupId>org.springframework</groupId>
+                  <artifactId>spring-context</artifactId>
+              </exclusion>
+              <exclusion>
+                  <groupId>org.springframework</groupId>
+                  <artifactId>spring-beans</artifactId>
+              </exclusion>
+              <exclusion>
+                  <groupId>org.springframework</groupId>
+                  <artifactId>spring-jdbc</artifactId>
+              </exclusion>
+          </exclusions>
         </dependency>
         
          <dependency>
@@ -143,27 +150,37 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-	          <!-- <exclusions>
-	          	<exclusion>
-	          		<groupId>org.springframework.boot</groupId>
-	          		<artifactId>spring-boot-starter-logging</artifactId>
-	          	</exclusion>
-	          </exclusions> -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-aop</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-tx</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-jdbc</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     
         <dependency>
           <groupId>commons-net</groupId>
           <artifactId>commons-net</artifactId>
-        </dependency>
-        
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-        </dependency>
-        
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
         
         <dependency>
@@ -227,7 +244,7 @@
             <dependency>
                 <groupId>org.onetwo4j</groupId>
                 <artifactId>onetwo-bom</artifactId>
-                <version>4.3.8-SNAPSHOT</version>
+                <version>${onetwo.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -311,26 +328,25 @@
 			        <failOnMissingWebXml>false</failOnMissingWebXml>
 			    </configuration>
 			</plugin>
+            
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                	<mainClass>${start-class}</mainClass>
-                </configuration>
-                <dependencies>
+                <version>1.5.4.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <!-- <dependencies>
                     <dependency>
                         <groupId>org.springframework</groupId>
                         <artifactId>springloaded</artifactId>
-                        <version>1.2.5.RELEASE</version>
+                        <version>1.2.4.RELEASE</version>
                     </dependency>
-                </dependencies>
-                <executions>
-                	<execution>
-                		<goals>
-                			<goal>repackage</goal>
-                		</goals>
-                	</execution>
-                </executions>
+                </dependencies> -->
             </plugin>
             
             <!-- db tools -->
@@ -425,6 +441,13 @@
 
     
     <repositories>
+        <repository>
+             <id>oss</id>
+             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
         <repository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>

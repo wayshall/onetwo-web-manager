@@ -3,15 +3,12 @@ spring:
         active: @{env}
     freemarker:
         suffix: .html
+    groovy: 
+        template: 
+            enabled: false
 jfish: 
     profile: true
-    mvc: 
-        mediaTypes:
-            json: application/json
-            xls: application/vnd.ms-excel
-            xml: application/xml
-        negotiating-view: true
-siteConfig:
+site:
     name: 后台管理系统
     config:
         security:

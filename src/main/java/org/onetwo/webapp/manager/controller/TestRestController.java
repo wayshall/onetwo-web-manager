@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.onetwo.common.data.AbstractDataResult.SimpleDataResult;
 import org.onetwo.common.exception.ServiceException;
-import org.onetwo.common.spring.web.mvc.utils.WebResultCreator;
+import org.onetwo.common.spring.mvc.utils.WebResultCreator;
 import org.onetwo.plugins.admin.entity.AdminUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ExceptionHandler;
