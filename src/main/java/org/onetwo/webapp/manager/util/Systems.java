@@ -1,4 +1,4 @@
-package org.onetwo.webapp.manager.utils;
+package org.onetwo.webapp.manager.util;
 
 import org.onetwo.plugins.admin.AdminModule;
 

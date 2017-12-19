@@ -3,9 +3,9 @@ package org.onetwo.webapp.manager.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
-import org.onetwo.common.data.AbstractDataResult.SimpleDataResult;
+import org.onetwo.common.data.DataResult;
 import org.onetwo.common.exception.ServiceException;
-import org.onetwo.common.spring.mvc.utils.WebResultCreator;
+import org.onetwo.common.spring.mvc.utils.DataResults;
 import org.onetwo.plugins.admin.entity.AdminUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,18 +21,18 @@ public class TestRestController {
 	private HttpServletRequest request;
 	
 	@RequestMapping("say")
-	public SimpleDataResult<?> say(HttpServletRequest request, String word){
+	public DataResult<?> say(HttpServletRequest request, String word){
 		System.out.println("this.request:"+this.request.getParameter("word"));
 		System.out.println("request:"+request.getParameter("word"));
 		if("error".equals(word)){
 			throw new ServiceException("error word!");
 		}
-		return WebResultCreator.creator().simple(word).buildResult();
+		return DataResults.simple(word).build();
 	}
 	
 	@RequestMapping("echo")
-	public SimpleDataResult<?> echo(@ModelAttribute("adminUser") AdminUser user){
-		return WebResultCreator.creator().simple(user).buildResult();
+	public DataResult<?> echo(@ModelAttribute("adminUser") AdminUser user){
+		return DataResults.simple(user).build();
 	}
 	
 	@ModelAttribute("adminUser")
@@ -46,8 +46,8 @@ public class TestRestController {
 	}
 	
 	@ExceptionHandler
-	public SimpleDataResult<?> exceptionHandler(Throwable e){
-		return WebResultCreator.creator().error(e.getMessage()).buildResult();
+	public DataResult<?> exceptionHandler(Throwable e){
+		return DataResults.error(e.getMessage()).build();
 	}
 
 }

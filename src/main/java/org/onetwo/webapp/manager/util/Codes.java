@@ -1,4 +1,4 @@
-package org.onetwo.webapp.manager.utils;
+package org.onetwo.webapp.manager.util;
 
 final public class Codes {
 
