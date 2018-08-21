@@ -8,10 +8,10 @@ spring:
         driver-class-name: com.mysql.jdbc.Driver
     application:
         name: web-manager
-    boot:
-        admin:
-            url: http://localhost:9999
-            context-path: /monitorui
+    #boot:
+        #admin:
+            #url: http://localhost:9999
+            #context-path: /monitorui
 endpoints:
     health:
         sensitive: false
@@ -34,6 +34,11 @@ jfish:
             disable: true
         logoutUrl: /logout
         alwaysUseDefaultTargetUrl: false
+        ignoringUrls: /**/captcha/**
+    plugin: 
+        web-admin: 
+            captcha: 
+                salt: ASDFA@GUythsdgasdf37890fghjkltyhj
     siteConfig:
         # redis: 
             # hostName: 127.0.0.1

@@ -1,0 +1,83 @@
+<#assign security = JspTaglibs["http://www.springframework.org/security/tags"]/>
+<!DOCTYPE html>
+<html>
+<head>
+    <@define name="charset">
+        <meta charset="UTF-8">
+    </@define>
+    <@security.csrfMetaTags />
+    <title><@define name="title"/></title>
+    <link rel="stylesheet" type="text/css" href="${siteConfig.webjarsJsPath}/easyui-1.5.2/themes/material/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${siteConfig.webjarsJsPath}/easyui-1.5.2/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="${siteConfig.webjarsJsPath}/easyui-1.5.2/themes/color.css">
+    <script type="text/javascript" src="${siteConfig.webjarsJsPath}/easyui-1.5.2/jquery.min.js"></script>
+    <script type="text/javascript" src="${siteConfig.webjarsJsPath}/easyui-1.5.2/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${siteConfig.webjarsJsPath}/easyui/datagrid-filter.js"></script>
+    <script type="text/javascript" src="${siteConfig.webjarsJsPath}/easyui-1.5.2/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${siteConfig.webjarsJsPath}/jqplugin/url.min.js"></script>
+    
+    <script type="text/javascript" src="${siteConfig.webjarsJsPath}/helper.js"></script>
+    <script type="text/javascript" src="${siteConfig.webjarsJsPath}/jquery/jquery.form.serializeObject.js"></script>
+    <script type="text/javascript" src="${siteConfig.jsPath}/util/cutil.js"></script>
+
+    <script type="text/javascript">
+    helper.config.baseUrl='${siteConfig.baseURL}';
+    /* <#if RequestParameters._frameReload??>
+    helper.page._frameReload = true;
+    </#if> */
+    </script>    
+    <style type="text/css">  
+    html,body  
+    {  
+        height:100%;  
+        margin:0 auto;  
+    }  
+    
+    
+    .formFieldClass {
+       width: 180px;
+    }
+    
+    <@define name="style"/>
+</style>
+
+        <script type="text/javascript">
+        function openShowImageDialog(src) {
+            $('#showImageDialog').dialog('open');
+            $("#showImageImg").attr({ src: src});
+        }
+        function imageFormatterFun(value,rec,index){
+            if(value == null){
+                return null;
+            }
+            return '<a onclick="openShowImageDialog(\''+value+'\')"><img width="50" height="50" src="'+value+'" alt="预览图片"/></a>';
+        }
+        function booleanFormatter(value, row, index){
+            if(value){
+                return '是';
+            }else{
+            	return '否';
+            }
+        }
+        function decimalFormatter(val,rowData,rowIndex){
+			if(val!=null){
+				return val.toFixed(2);
+			}
+		}
+        </script>
+        
+    <@define name="js"/>
+    
+</head>
+<body class="bg_box">
+    <@define name="main-content"/>
+    <div id="showImageDialog" class="easyui-dialog"
+         style="width:60%;height:80%;padding:10px 20px"
+         data-options="closed:true, modal:true, title:'查看图片'">
+        <img id="showImageImg" alt="预览图" src="" style="width:100%">
+    </div>
+</body>
+
+    
+</html>
+

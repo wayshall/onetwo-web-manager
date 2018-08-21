@@ -33,7 +33,7 @@ public class DefaultMenuInfoParserTest {
 	
 	@Test
 	public void testParser(){
-		AdminPermission p = this.parser.parseTree();
+		AdminPermission p = this.parser.parseTree().get();
 		Assert.assertEquals(AppwebMenuTest.name, p.getName());
 		Assert.assertEquals(AppwebMenuTest.appCode, p.getAppCode());
 		
