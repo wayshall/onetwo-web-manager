@@ -1,4 +1,5 @@
 server:
+    #contextPath: /web-manager
     port: 9081
 spring: 
     datasource: 
@@ -8,6 +9,8 @@ spring:
         driver-class-name: com.mysql.jdbc.Driver
     application:
         name: web-manager
+    session: 
+        storeType: hash_map
     #boot:
         #admin:
             #url: http://localhost:9999
@@ -38,7 +41,9 @@ jfish:
     plugin: 
         web-admin: 
             captcha: 
+                enabled: false
                 salt: ASDFA@GUythsdgasdf37890fghjkltyhj
+                color: 255, 0, 0
     siteConfig:
         # redis: 
             # hostName: 127.0.0.1
