@@ -11,7 +11,7 @@
  Target Server Version : 50624
  File Encoding         : 65001
 
- Date: 05/09/2018 19:42:32
+ Date: 13/09/2018 18:30:18
 */
 
 SET NAMES utf8mb4;
@@ -33,9 +33,10 @@ CREATE TABLE `admin_application`  (
 -- ----------------------------
 -- Records of admin_application
 -- ----------------------------
+INSERT INTO `admin_application` VALUES ('AdminModule', '权限管理系统', NULL, '2018-09-13 10:23:32', '2018-09-13 10:23:32');
 INSERT INTO `admin_application` VALUES ('Apps', '系统权限', NULL, '2017-10-26 13:21:53', '2017-10-26 13:27:17');
 INSERT INTO `admin_application` VALUES ('Products', '产品管理系统', NULL, '2017-01-09 02:09:50', '2017-03-27 18:15:43');
-INSERT INTO `admin_application` VALUES ('Systems', '后台管理系统', NULL, '2017-01-09 02:09:07', '2017-01-16 02:01:13');
+INSERT INTO `admin_application` VALUES ('Systems', '后台管理系统', NULL, '2017-01-09 02:09:07', '2018-09-13 10:18:45');
 
 -- ----------------------------
 -- Table structure for admin_login_log
@@ -76,87 +77,30 @@ CREATE TABLE `admin_permission`  (
   `CHILDREN_SIZE` int(11) NULL DEFAULT NULL COMMENT '子节点数量',
   `APP_CODE` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `RESOURCES_PATTERN` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '如果权限保护是通过某种模式匹配，比如web的url\r\n            则此字段代表了这权限需要保护的资源。\r\n            其他模式的权限不需要用到此字段。\r\n            如果是url，则按照下面的格式解释，多个模式之间用逗号分隔：\r\n            请求方法 | url地址，如：post | /user/create, /user/list\r\n            没有请求方法的默认为get\r\n            ',
+  `META` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '元数据',
   PRIMARY KEY (`CODE`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of admin_permission
 -- ----------------------------
-INSERT INTO `admin_permission` VALUES ('Apps', 'MENU', 'SYNC', '', NULL, NULL, '系统权限', 1, 0, 1, 'Apps', NULL);
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule', 'MENU', 'SYNC', '', NULL, 'Apps', '权限管理系统', 3497, 0, 5, 'Apps', NULL);
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_ApplicationMgr', 'MENU', 'SYNC', '/web-admin/application', 'GET', 'Apps_AdminModule', '应用系统管理', 3, 0, 3, 'Apps', 'GET|/web-admin/application*, GET|/web-admin/application/*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_ApplicationMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'Apps_AdminModule_ApplicationMgr', '新增', 3512, 0, 0, 'Apps', 'POST|/web-admin/application*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_ApplicationMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'Apps_AdminModule_ApplicationMgr', '删除', 3510, 0, 0, 'Apps', 'DELETE|/web-admin/application*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_ApplicationMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'Apps_AdminModule_ApplicationMgr', '更新', 3511, 0, 0, 'Apps', 'PUT|/web-admin/application/*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_DictMgr', 'MENU', 'SYNC', '/web-admin/dictionary', 'GET', 'Apps_AdminModule', '字典配置管理', 3498, 0, 0, 'Apps', 'GET|/web-admin/dictionary*, GET|/web-admin/dictionary/*, PUT|/web-admin/dictionary/*, DELETE|/web-admin/dictionary/*, POST|/web-admin/dictionary*, GET|/web-admin/dictionary/children*, DELETE|/web-admin/dictionary*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_RoleMgr', 'MENU', 'SYNC', '/web-admin/role', 'GET', 'Apps_AdminModule', '角色管理', 5, 0, 4, 'Apps', 'GET|/web-admin/role*, GET|/web-admin/role/*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_RoleMgr_AssignPermission', 'FUNCTION', 'SYNC', NULL, NULL, 'Apps_AdminModule_RoleMgr', '分配权限', 3505, 0, 0, 'Apps', 'GET|/web-admin/application/bindPermission*, POST|/web-admin/rolePermission/*, GET|/web-admin/rolePermission/*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_RoleMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'Apps_AdminModule_RoleMgr', '新增', 3508, 0, 0, 'Apps', 'POST|/web-admin/role*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_RoleMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'Apps_AdminModule_RoleMgr', '删除', 3506, 0, 0, 'Apps', 'DELETE|/web-admin/role*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_RoleMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'Apps_AdminModule_RoleMgr', '更新', 3507, 0, 0, 'Apps', 'PUT|/web-admin/role/*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_UserMgr', 'MENU', 'SYNC', '/web-admin/user', 'GET', 'Apps_AdminModule', '用户管理', 10, 0, 4, 'Apps', 'GET|/web-admin/user*, GET|/web-admin/user/*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_UserMgr_AssignRole', 'FUNCTION', 'SYNC', NULL, NULL, 'Apps_AdminModule_UserMgr', '分配角色', 3500, 0, 0, 'Apps', 'PUT|/web-admin/userRole/*, GET|/web-admin/userRole/*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_UserMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'Apps_AdminModule_UserMgr', '新增', 3503, 0, 0, 'Apps', 'POST|/web-admin/user*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_UserMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'Apps_AdminModule_UserMgr', '删除', 3501, 0, 0, 'Apps', 'DELETE|/web-admin/user*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_UserMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'Apps_AdminModule_UserMgr', '更新', 3502, 0, 0, 'Apps', 'PUT|/web-admin/user/*');
-INSERT INTO `admin_permission` VALUES ('Apps_AdminModule_UserProfile', 'MENU', 'SYNC', '/web-admin/userProfile', 'GET', 'Apps_AdminModule', '修改资料', 3513, 0, 0, 'Apps', 'PUT|/web-admin/userProfile*, GET|/web-admin/userProfile*');
-INSERT INTO `admin_permission` VALUES ('Products', 'MENU', 'SYNC', '', NULL, NULL, '产品管理系统', 1, 0, 2, 'Products', NULL);
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr', 'MENU', 'SYNC', '', NULL, 'Products', '用户角色权限管理', 339, 0, 4, 'Products', NULL);
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_ApplicationMgr', 'MENU', 'SYNC', '/web-admin/application', 'GET', 'Products_AdminMgr', '应用系统管理', 3, 0, 3, 'Products', 'GET|/web-admin/application*, GET|/web-admin/application/*');
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_ApplicationMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_AdminMgr_ApplicationMgr', '新增', 341, 0, 0, 'Products', 'POST|/web-admin/application*');
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_ApplicationMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_AdminMgr_ApplicationMgr', '删除', 342, 0, 0, 'Products', 'DELETE|/web-admin/application*');
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_ApplicationMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_AdminMgr_ApplicationMgr', '更新', 343, 0, 0, 'Products', 'PUT|/web-admin/application/*');
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_DictMgr', 'MENU', 'SYNC', '/web-admin/dictionary', 'GET', 'Products_AdminMgr', '字典配置管理', 344, 0, 0, 'Products', 'GET|/web-admin/dictionary*, GET|/web-admin/dictionary/*, PUT|/web-admin/dictionary/*, DELETE|/web-admin/dictionary/*, POST|/web-admin/dictionary*, GET|/web-admin/dictionary/children*, DELETE|/web-admin/dictionary*');
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_RoleMgr', 'MENU', 'SYNC', '/web-admin/role', 'GET', 'Products_AdminMgr', '角色管理', 5, 0, 4, 'Products', 'GET|/web-admin/role*, GET|/web-admin/role/*');
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_RoleMgr_AssignPermission', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_AdminMgr_RoleMgr', '分配权限', 346, 0, 0, 'Products', 'GET|/web-admin/application/bindPermission*, POST|/web-admin/rolePermission/*, GET|/web-admin/rolePermission/*');
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_RoleMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_AdminMgr_RoleMgr', '新增', 347, 0, 0, 'Products', 'POST|/web-admin/role*');
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_RoleMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_AdminMgr_RoleMgr', '删除', 348, 0, 0, 'Products', 'DELETE|/web-admin/role*');
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_RoleMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_AdminMgr_RoleMgr', '更新', 349, 0, 0, 'Products', 'PUT|/web-admin/role/*');
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_UserMgr', 'MENU', 'SYNC', '/web-admin/user', 'GET', 'Products_AdminMgr', '用户管理', 10, 0, 4, 'Products', 'GET|/web-admin/user*, GET|/web-admin/user/*');
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_UserMgr_AssignRole', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_AdminMgr_UserMgr', '分配角色', 351, 0, 0, 'Products', 'PUT|/web-admin/userRole/*, GET|/web-admin/userRole/*');
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_UserMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_AdminMgr_UserMgr', '新增', 352, 0, 0, 'Products', 'POST|/web-admin/user*');
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_UserMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_AdminMgr_UserMgr', '删除', 353, 0, 0, 'Products', 'DELETE|/web-admin/user*');
-INSERT INTO `admin_permission` VALUES ('Products_AdminMgr_UserMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_AdminMgr_UserMgr', '更新', 354, 0, 0, 'Products', 'PUT|/web-admin/user/*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr', 'MENU', 'SYNC', '', NULL, 'Products', '系统管理', 1, 0, 5, 'Products', NULL);
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_ActiveMgr', 'MENU', 'SYNC', '', 'GET', 'Products_SystemMgr', '激活管理', 356, 0, 6, 'Products', 'GET|/manager/productActive/*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_ActiveMgr_ActiveIncomeView', 'MENU', 'SYNC', '/manager/activeIncome/statis', 'GET', 'Products_SystemMgr_ActiveMgr', '激活收入查看', 357, 0, 0, 'Products', 'GET|/manager/activeIncome/statis*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_ActiveMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_SystemMgr_ActiveMgr', '新增', 358, 0, 0, 'Products', 'POST|/manager/productActive*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_ActiveMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_SystemMgr_ActiveMgr', '删除', 359, 0, 0, 'Products', 'DELETE|/manager/productActive*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_ActiveMgr_List', 'MENU', 'SYNC', '/manager/productActive', 'GET', 'Products_SystemMgr_ActiveMgr', '激活列表', 360, 0, 0, 'Products', 'GET|/manager/productActive*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_ActiveMgr_Statis', 'MENU', 'SYNC', '/manager/productActive/statis', 'GET', 'Products_SystemMgr_ActiveMgr', '激活统计', 361, 0, 0, 'Products', 'GET|/manager/productActive/statis*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_ActiveMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_SystemMgr_ActiveMgr', '更新', 362, 0, 0, 'Products', 'PUT|/manager/productActive/*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_IncomeMgr', 'MENU', 'SYNC', '', 'GET', 'Products_SystemMgr', '收益管理', 363, 0, 5, 'Products', 'GET|/manager/productIncome/*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_IncomeMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_SystemMgr_IncomeMgr', '新增', 364, 0, 0, 'Products', 'POST|/manager/productIncome*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_IncomeMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_SystemMgr_IncomeMgr', '删除', 365, 0, 0, 'Products', 'DELETE|/manager/productIncome*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_IncomeMgr_List', 'MENU', 'SYNC', '/manager/productIncome', 'GET', 'Products_SystemMgr_IncomeMgr', '收益列表', 366, 0, 0, 'Products', 'GET|/manager/productIncome*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_IncomeMgr_Statis', 'MENU', 'SYNC', '/manager/productIncome/statis', 'GET', 'Products_SystemMgr_IncomeMgr', '收支统计', 367, 0, 0, 'Products', 'GET|/manager/productIncome/statis*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_IncomeMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_SystemMgr_IncomeMgr', '更新', 368, 0, 0, 'Products', 'PUT|/manager/productIncome/*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_ProductMgr', 'MENU', 'SYNC', '/manager/product', 'GET', 'Products_SystemMgr', '产品管理', 369, 0, 3, 'Products', 'GET|/manager/product*, GET|/manager/product/*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_ProductMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_SystemMgr_ProductMgr', '新增', 370, 0, 0, 'Products', 'POST|/manager/product*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_ProductMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_SystemMgr_ProductMgr', '删除', 371, 0, 0, 'Products', 'DELETE|/manager/product*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_ProductMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_SystemMgr_ProductMgr', '更新', 372, 0, 0, 'Products', 'PUT|/manager/product/*');
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_UserMgr', 'MENU', 'SYNC', '', NULL, 'Products_SystemMgr', '账号管理', 373, 0, 3, 'Products', NULL);
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_UserMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_SystemMgr_UserMgr', '新增', 374, 0, 0, 'Products', NULL);
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_UserMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_SystemMgr_UserMgr', '删除', 375, 0, 0, 'Products', NULL);
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_UserMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'Products_SystemMgr_UserMgr', '更新', 376, 0, 0, 'Products', NULL);
-INSERT INTO `admin_permission` VALUES ('Products_SystemMgr_UserProfile', 'MENU', 'SYNC', '/manager/userProfile', 'GET', 'Products_SystemMgr', '修改资料', 377, 0, 0, 'Products', 'PUT|/manager/userProfile*, GET|/manager/userProfile*');
-INSERT INTO `admin_permission` VALUES ('Systems', 'MENU', 'SYNC', '', NULL, NULL, '后台管理系统', 1, 0, 1, 'Systems', NULL);
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule', 'MENU', 'SYNC', '', NULL, 'Systems', '用户角色权限管理', 1584, 0, 4, 'Systems', NULL);
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_ApplicationMgr', 'MENU', 'SYNC', '/web-admin/application', 'GET', 'Systems_AdminModule', '应用系统管理', 3, 0, 3, 'Systems', 'GET|/web-admin/application*, GET|/web-admin/application/*');
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_ApplicationMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'Systems_AdminModule_ApplicationMgr', '新增', 1586, 0, 0, 'Systems', 'POST|/web-admin/application*');
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_ApplicationMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'Systems_AdminModule_ApplicationMgr', '删除', 1587, 0, 0, 'Systems', 'DELETE|/web-admin/application*');
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_ApplicationMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'Systems_AdminModule_ApplicationMgr', '更新', 1588, 0, 0, 'Systems', 'PUT|/web-admin/application/*');
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_DictMgr', 'MENU', 'SYNC', '/web-admin/dictionary', 'GET', 'Systems_AdminModule', '字典配置管理', 1589, 0, 0, 'Systems', 'GET|/web-admin/dictionary*, GET|/web-admin/dictionary/*, PUT|/web-admin/dictionary/*, DELETE|/web-admin/dictionary/*, POST|/web-admin/dictionary*, GET|/web-admin/dictionary/children*, DELETE|/web-admin/dictionary*');
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_RoleMgr', 'MENU', 'SYNC', '/web-admin/role', 'GET', 'Systems_AdminModule', '角色管理', 5, 0, 4, 'Systems', 'GET|/web-admin/role*, GET|/web-admin/role/*');
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_RoleMgr_AssignPermission', 'FUNCTION', 'SYNC', NULL, NULL, 'Systems_AdminModule_RoleMgr', '分配权限', 1591, 0, 0, 'Systems', 'GET|/web-admin/application/bindPermission*, POST|/web-admin/rolePermission/*, GET|/web-admin/rolePermission/*');
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_RoleMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'Systems_AdminModule_RoleMgr', '新增', 1592, 0, 0, 'Systems', 'POST|/web-admin/role*');
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_RoleMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'Systems_AdminModule_RoleMgr', '删除', 1593, 0, 0, 'Systems', 'DELETE|/web-admin/role*');
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_RoleMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'Systems_AdminModule_RoleMgr', '更新', 1594, 0, 0, 'Systems', 'PUT|/web-admin/role/*');
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_UserMgr', 'MENU', 'SYNC', '/web-admin/user', 'GET', 'Systems_AdminModule', '用户管理', 10, 0, 4, 'Systems', 'GET|/web-admin/user*, GET|/web-admin/user/*');
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_UserMgr_AssignRole', 'FUNCTION', 'SYNC', NULL, NULL, 'Systems_AdminModule_UserMgr', '分配角色', 1596, 0, 0, 'Systems', 'PUT|/web-admin/userRole/*, GET|/web-admin/userRole/*');
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_UserMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'Systems_AdminModule_UserMgr', '新增', 1597, 0, 0, 'Systems', 'POST|/web-admin/user*');
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_UserMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'Systems_AdminModule_UserMgr', '删除', 1598, 0, 0, 'Systems', 'DELETE|/web-admin/user*');
-INSERT INTO `admin_permission` VALUES ('Systems_AdminModule_UserMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'Systems_AdminModule_UserMgr', '更新', 1599, 0, 0, 'Systems', 'PUT|/web-admin/user/*');
+INSERT INTO `admin_permission` VALUES ('AdminModule', 'MENU', 'SYNC', '', NULL, NULL, '权限管理系统', 1, 0, 5, 'AdminModule', NULL, NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_ApplicationMgr', 'MENU', 'SYNC', '/web-admin/application', 'GET', 'AdminModule', '应用系统管理', 3, 0, 3, 'AdminModule', 'GET|/web-admin/application*, GET|/web-admin/application/*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_ApplicationMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'AdminModule_ApplicationMgr', '新增', 8960, 0, 0, 'AdminModule', 'POST|/web-admin/application*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_ApplicationMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'AdminModule_ApplicationMgr', '删除', 8958, 0, 0, 'AdminModule', 'DELETE|/web-admin/application*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_ApplicationMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'AdminModule_ApplicationMgr', '更新', 8959, 0, 0, 'AdminModule', 'PUT|/web-admin/application/*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_DictMgr', 'MENU', 'SYNC', '/web-admin/dictionary', 'GET', 'AdminModule', '字典配置管理', 8946, 0, 0, 'AdminModule', 'GET|/web-admin/dictionary*, GET|/web-admin/dictionary/*, PUT|/web-admin/dictionary/*, DELETE|/web-admin/dictionary/*, POST|/web-admin/dictionary*, GET|/web-admin/dictionary/children*, DELETE|/web-admin/dictionary*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_RoleMgr', 'MENU', 'SYNC', '/web-admin/role', 'GET', 'AdminModule', '角色管理', 5, 0, 4, 'AdminModule', 'GET|/web-admin/role*, GET|/web-admin/role/*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_RoleMgr_AssignPermission', 'FUNCTION', 'SYNC', NULL, NULL, 'AdminModule_RoleMgr', '分配权限', 8953, 0, 0, 'AdminModule', 'GET|/web-admin/application/bindPermission*, POST|/web-admin/rolePermission/*, GET|/web-admin/rolePermission/*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_RoleMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'AdminModule_RoleMgr', '新增', 8956, 0, 0, 'AdminModule', 'POST|/web-admin/role*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_RoleMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'AdminModule_RoleMgr', '删除', 8954, 0, 0, 'AdminModule', 'DELETE|/web-admin/role*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_RoleMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'AdminModule_RoleMgr', '更新', 8955, 0, 0, 'AdminModule', 'PUT|/web-admin/role/*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_UserMgr', 'MENU', 'SYNC', '/web-admin/user', 'GET', 'AdminModule', '用户管理', 10, 0, 4, 'AdminModule', 'GET|/web-admin/user*, GET|/web-admin/user/export*, GET|/web-admin/user/*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_UserMgr_AssignRole', 'FUNCTION', 'SYNC', NULL, NULL, 'AdminModule_UserMgr', '分配角色', 8948, 0, 0, 'AdminModule', 'PUT|/web-admin/userRole/*, GET|/web-admin/userRole/*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_UserMgr_Create', 'FUNCTION', 'SYNC', NULL, NULL, 'AdminModule_UserMgr', '新增', 8951, 0, 0, 'AdminModule', 'POST|/web-admin/user*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_UserMgr_Delete', 'FUNCTION', 'SYNC', NULL, NULL, 'AdminModule_UserMgr', '删除', 8949, 0, 0, 'AdminModule', 'DELETE|/web-admin/user*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_UserMgr_Update', 'FUNCTION', 'SYNC', NULL, NULL, 'AdminModule_UserMgr', '更新', 8950, 0, 0, 'AdminModule', 'PUT|/web-admin/user/*', NULL);
+INSERT INTO `admin_permission` VALUES ('AdminModule_UserProfile', 'MENU', 'SYNC', '/web-admin/userProfile', 'GET', 'AdminModule', '修改资料', 8961, 0, 0, 'AdminModule', 'PUT|/web-admin/userProfile*, GET|/web-admin/userProfile*', NULL);
 
 -- ----------------------------
 -- Table structure for admin_role
@@ -222,8 +166,8 @@ CREATE TABLE `admin_user`  (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES (1, 'root', '终极管理员', '$2a$10$4ft6RTeIB2.FBkWUEWY10OI0YAfftSIlHa2cZmmc8OpcJEbUaMkji', NULL, NULL, NULL, NULL, NULL, 'NORMAL', '2016-07-18 00:46:32', NULL, '2016-07-17 00:46:37', NULL, NULL);
-INSERT INTO `admin_user` VALUES (2, 'test', '测试用户', '$2a$10$37LQSTCGxXbK27NmNLC.XOEluiTE3OCVkbNQUw5qqnYxqXqmDGUEy', '', NULL, NULL, '', 'MALE', 'NORMAL', '2016-07-17 22:30:24', '2016-07-17 22:30:27', '2017-05-17 12:08:03', NULL, NULL);
+INSERT INTO `admin_user` VALUES (1, 'root', '终极管理员', '$2a$10$4ft6RTeIB2.FBkWUEWY10OI0YAfftSIlHa2cZmmc8OpcJEbUaMkji', NULL, NULL, NULL, NULL, NULL, 'NORMAL', '2016-07-18 00:46:32', NULL, '2016-07-17 00:46:37', NULL, 'https://wx.qlogo.cn/mmopen/vi_32/bOgMZFSHP36MGQB4K9j4iaYTyfjZicfne7Zv4CrjZXHm10trrctWbjC9rjh63icHgIue3mrBwbicic37BKALyPZfZeQ/0');
+INSERT INTO `admin_user` VALUES (2, 'test', '测试用户', '$2a$10$37LQSTCGxXbK27NmNLC.XOEluiTE3OCVkbNQUw5qqnYxqXqmDGUEy', '', NULL, NULL, '', 'MALE', 'NORMAL', '2016-07-17 22:30:24', '2016-07-17 22:30:27', '2018-09-06 23:55:23', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for admin_user_role
