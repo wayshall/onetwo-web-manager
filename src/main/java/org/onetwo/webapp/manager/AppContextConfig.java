@@ -1,9 +1,11 @@
 package org.onetwo.webapp.manager;
 
+import java.util.Arrays;
+
 import org.onetwo.boot.module.security.oauth2.EnableUserInfoResource;
 import org.onetwo.boot.module.security.url.EnableUrlSecurity;
-import org.onetwo.plugins.admin.utils.WebAdminPermissionConfig.RootMenuClassProvider;
-import org.onetwo.webapp.manager.util.Systems;
+import org.onetwo.plugins.admin.AdminModule;
+import org.onetwo.plugins.admin.utils.WebAdminPermissionConfig.RootMenuClassListProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -14,9 +16,13 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableUserInfoResource
 public class AppContextConfig  {
 
-	@Bean
+	/*@Bean
 	public RootMenuClassProvider menuConfig(){
 		return ()->Systems.class;
-	}
+	}*/
 
+    @Bean
+    public RootMenuClassListProvider menuConfig() {
+        return () -> Arrays.asList(AdminModule.class);
+    }
 }
