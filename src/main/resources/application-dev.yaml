@@ -1,6 +1,6 @@
 server:
-    #contextPath: /web-manager
-    port: 9081
+    contextPath: /summit-manager
+    port: 10080
 spring: 
     datasource: 
         url: jdbc:mysql://localhost:3306/web_admin?useUnicode=true&amp;characterEncoding=UTF-8
@@ -31,17 +31,19 @@ security:
             checkTokenAccess: isAuthenticated()
             
 jfish:
+    session: 
+        strategy: customizable
     security:
         syncPermissionData: true
         csrf:
             disable: true
         logoutUrl: /logout
         alwaysUseDefaultTargetUrl: false
-        ignoringUrls: /**/captcha/**
+        ignoringUrls: /**/captcha**
     plugin: 
         web-admin: 
             captcha: 
-                enabled: false
+                enabled: true
                 salt: ASDFA@GUythsdgasdf37890fghjkltyhj
                 color: 255, 0, 0
     siteConfig:
