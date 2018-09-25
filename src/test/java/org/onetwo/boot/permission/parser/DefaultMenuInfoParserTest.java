@@ -38,15 +38,15 @@ public class DefaultMenuInfoParserTest {
 		Assert.assertEquals(AppwebMenuTest.appCode, p.getAppCode());
 		
 
-		p = p.getChildrenMenu().get(0);
+		p = (AdminPermission)p.getChildrenMenu().get(0);
 		Assert.assertEquals(AppwebMenuTest.System.name, p.getName());
 		Assert.assertEquals(AppwebMenuTest.System.sort, p.getSort().intValue());
 		
-		p = p.getChildrenMenu().get(0);
+		p = (AdminPermission)p.getChildrenMenu().get(0);
 		Assert.assertEquals("AppwebMenuTest_System_AdminModule", p.getCode());
 		Assert.assertEquals(AdminModule.name, p.getName());
 		
-		p = p.getChildrenMenu().get(0);
+		p = (AdminPermission)p.getChildrenMenu().get(0);
 		Assert.assertEquals(AppRole.name, p.getName());
 		Assert.assertEquals(AppRole.sort, p.getSort().intValue());
 		
