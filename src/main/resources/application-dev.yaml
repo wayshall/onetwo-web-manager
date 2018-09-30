@@ -46,16 +46,15 @@ jfish:
                 enabled: true
                 salt: ASDFA@GUythsdgasdf37890fghjkltyhj
                 color: 255, 0, 0
-    siteConfig:
-        # redis: 
-            # hostName: 127.0.0.1
-    site:
-        uploadImageAccessPath: http://localhost/img/manager
-        upload:
-            #storeType: ftp
-            #ftpServer: 127.0.0.1
-            #ftpUser: test
-            #ftpPassword: test
-            fileStorePath: G:/temp/upload_files
-            appContextDir: manager
-            #maxUploadSize: 1024
+site:
+    imageServer: 
+        basePath: ${server.contextPath}/images
+    upload:
+        storeType: LOCAL
+        #ftpServer: 127.0.0.1
+        #ftpUser: test
+        #ftpPassword: test
+        fileStorePath: G:/temp/upload_files
+        appContextDir: manager
+        accessPathPatterns: /images/**
+        #maxUploadSize: 1024
