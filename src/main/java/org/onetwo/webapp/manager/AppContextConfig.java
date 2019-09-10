@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.onetwo.boot.module.security.oauth2.EnableUserInfoResource;
 import org.onetwo.boot.module.security.url.EnableUrlSecurity;
-import org.onetwo.plugins.admin.AdminModule;
+import org.onetwo.plugins.admin.AdminMgr;
 import org.onetwo.plugins.admin.utils.WebAdminPermissionConfig.RootMenuClassListProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +23,6 @@ public class AppContextConfig  {
 
     @Bean
     public RootMenuClassListProvider menuConfig() {
-        return () -> Arrays.asList(AdminModule.class);
+        return () -> Arrays.asList(AdminMgr.class);
     }
 }

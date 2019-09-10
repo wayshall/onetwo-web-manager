@@ -20,4 +20,4 @@ site:
     name: 后台管理系统
     config:
         security:
-            preventXssRequest: true
+            prevent-xss-request: true

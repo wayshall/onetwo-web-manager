@@ -1,8 +1,8 @@
 package org.onetwo.webapp.manager;
 
 import org.junit.runner.RunWith;
+import org.onetwo.boot.test.BootMvcWithSecurityBaseITest;
 import org.onetwo.ext.security.utils.LoginUserDetails;
-import org.onetwo.test.boot.BootMvcWithSecurityBaseITest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

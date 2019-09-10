@@ -1,5 +1,6 @@
 server:
-    contextPath: /summit-manager
+    servlet: 
+        context-path: /
     port: 10080
 spring: 
     datasource: 
@@ -9,18 +10,20 @@ spring:
         driver-class-name: com.mysql.jdbc.Driver
     application:
         name: web-manager
+    redis:
+        host: localhost
+        port: 6379
+        database: 1
+        jedis: 
+            pool:
+                max-active: 2
     session: 
-        storeType: hash_map
+        store-type: redis #HAZELCAST
     #boot:
         #admin:
             #url: http://localhost:9999
             #context-path: /monitorui
-endpoints:
-    health:
-        sensitive: false
-
 security:
-    
     oauth2:
         client:
             client-id: acme
@@ -28,18 +31,18 @@ security:
             scope: read,write
             auto-approve-scopes: '.*'
         authorization:
-            checkTokenAccess: isAuthenticated()
+            checkToken-access: isAuthenticated()
             
 jfish:
     session: 
         strategy: customizable
     security:
-        syncPermissionData: true
+        sync-permissionData: true
         csrf:
             disable: true
-        logoutUrl: /logout
-        alwaysUseDefaultTargetUrl: false
-        ignoringUrls: /**/captcha**
+        logout-url: /logout
+        alwaysUse-default-target-url: false
+        ignoring-urls: /**/captcha**
     plugin: 
         web-admin: 
             captcha: 
@@ -47,14 +50,14 @@ jfish:
                 salt: ASDFA@GUythsdgasdf37890fghjkltyhj
                 color: 255, 0, 0
 site:
-    imageServer: 
-        basePath: ${server.contextPath}/images
+    image-server: 
+        base-path: ${server.servlet.contextPath}/images
     upload:
-        storeType: LOCAL
+        store-type: LOCAL
         #ftpServer: 127.0.0.1
         #ftpUser: test
         #ftpPassword: test
-        fileStorePath: G:/temp/upload_files
-        appContextDir: manager
-        accessPathPatterns: /images/**
+        file-store-path: G:/temp/upload_files
+        app-context-dir: manager
+        access-path-patterns: /images/**
         #maxUploadSize: 1024
