@@ -25,9 +25,29 @@
         <unit-tests.skip>false</unit-tests.skip>
         <integration-tests.skip>true</integration-tests.skip>
         <onetwo.version>5.0.0-SNAPSHOT</onetwo.version>
+        <spring-cloud.version>Finchley.SR4</spring-cloud.version>
     </properties>
 
     <dependencies>
+    
+    <!-- spring cloud -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.springframework.cloud</groupId>
+          <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.onetwo4j</groupId>
+          <artifactId>onetwo-cloud</artifactId>
+        </dependency>
+        
         <dependency> 
 			<groupId>org.springframework.boot</groupId> 
 			<artifactId>spring-boot-properties-migrator</artifactId> 
@@ -66,7 +86,7 @@
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
         
-        <dependency>
+        <!-- <dependency>
           <groupId>org.springframework.security.oauth</groupId>
           <artifactId>spring-security-oauth2</artifactId>
           <exclusions>
@@ -95,7 +115,7 @@
                   <artifactId>spring-jdbc</artifactId>
               </exclusion>
           </exclusions>
-        </dependency>
+        </dependency> -->
         
          <dependency>
             <groupId>mysql</groupId>
@@ -125,6 +145,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency> -->
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-actuator</artifactId>
+	    </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -199,11 +224,6 @@
  			<artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         
-        <dependency>
-		    <groupId>de.codecentric</groupId>
-		    <artifactId>spring-boot-admin-starter-client</artifactId>
-		</dependency>
-		
         <!-- <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session</artifactId>
@@ -281,6 +301,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+	        <dependency>
+	            <groupId>org.springframework.cloud</groupId>
+	            <artifactId>spring-cloud-dependencies</artifactId>
+	            <version>${spring-cloud.version}</version>
+	            <type>pom</type>
+	            <scope>import</scope>
+	        </dependency>
         </dependencies>
     </dependencyManagement>
     

@@ -2,6 +2,7 @@ package org.onetwo.webapp.manager;
 
 import org.onetwo.boot.core.EnableJFishBootExtension;
 import org.onetwo.boot.core.EnableJFishBootExtension.AppcationType;
+import org.onetwo.cloud.EnableJFishCloudExtension;
 import org.onetwo.dbm.spring.EnableDbm;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @SpringBootApplication(exclude={GroovyTemplateAutoConfiguration.class})
 //@SpringBootApplication(exclude={VelocityAutoConfiguration.class})
 @EnableJFishBootExtension(appcationType=AppcationType.WEB_UI)
+@EnableJFishCloudExtension
 @EnableDbm
 public class WebManagerStarter {
 	
