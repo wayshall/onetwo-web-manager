@@ -2,7 +2,7 @@ debug: true
 eureka:
     client:
         serviceUrl:
-            defaultZone:  http://localhost:9761/eureka/
+            defaultZone:  http://localhost:8761/eureka/
 server:
     servlet: 
         context-path: /
@@ -47,7 +47,7 @@ jfish:
             disable: true
         logout-url: /logout
         alwaysUse-default-target-url: false
-        ignoring-urls: /**/captcha**
+        ignoring-urls: /**/captcha**,/actuator/**
         cookie: 
             path: ${server.servlet.contextPath}
     plugin: 
@@ -68,3 +68,8 @@ site:
         app-context-dir: manager
         access-path-patterns: /images/**
         #maxUploadSize: 1024
+management: 
+    endpoints: 
+        web: 
+            exposure: 
+                include: '*'
