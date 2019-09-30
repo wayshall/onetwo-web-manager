@@ -8,7 +8,7 @@ public class BCryptPasswordEncoderTest {
 	@Test
 	public void test(){
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String str = encoder.encode("test");
+		String str = encoder.encode("wxalbum@cloudmicro$2019");
 		System.out.println("str:" + str);
 	}
 
